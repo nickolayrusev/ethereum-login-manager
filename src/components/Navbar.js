@@ -20,19 +20,9 @@ class Navbar extends Component {
                     <ul className="nav navbar-nav">
                         <li className={this.isActive('home') ? 'active' : null}><Link to={'/'}>Home</Link></li>
                         <li className={this.isActive('register') ? 'active': null}><Link to={'register'}>Register</Link></li>
-                        <li className="dropdown">
-                            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"/></a>
-                            <ul className="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" className="divider"/>
-                                <li><a href="#">Separated link</a></li>
-                                <li role="separator" className="divider"/>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li>
+                        <li className={this.isActive('withdraw') ? 'active': null}><Link to={'withdraw'}>Withdraw</Link></li>
+                        <li className={this.isActive('destroy') ? 'active': null}><Link to={'destroy'}>Destroy</Link></li>
+                        <li className={this.isActive('history') ? 'active': null}><Link to={'history'}>History</Link></li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                         <li className={this.isActive('login') ? 'active': null}><Link to={'login'}>Login</Link></li>

@@ -1,28 +1,26 @@
 import React, {Component} from 'react';
 import './Post.css';
 
-// ({id, title, image, content, comments, onCommentAdd})
 class Post extends Component {
 
     constructor(props) {
-        super(props)
-        this.state = {comment: ''};
+        super(props);
         this.onAddComment = this.onAddComment.bind(this);
-        this.handleChange = this.handleChange.bind(this);
     }
 
     onAddComment() {
         const {id} = this.props;
-        const {comment} = this.state;
+        const comment = this.comment.value
         this.props.onAddComment({id}, comment)
+        this.resetComment()
     }
 
-    handleChange(event) {
-        this.setState({comment: event.target.value});
+    resetComment() {
+        this.comment.value = '';
     }
 
     render() {
-        const {id, title, image, content, comments} = this.props;
+        const {id, title, image, content, comments, isAuthenticated} = this.props;
         return <div className="col-xs-12 col-sm-4">
             <div className="card">
                 <a className="img-card">
@@ -42,12 +40,12 @@ class Post extends Component {
                         Read More
                     </a>
                 </div>
-                <div className={'comment-wrapper inner-addon right-addon'}>
+                {isAuthenticated && <div className={'comment-wrapper inner-addon right-addon'}>
                     <i aria-hidden={'true'} className="glyphicon glyphicon-comment" onClick={this.onAddComment}/>
-                    <input type={'text'} onChange={this.handleChange} placeholder={'comment...'}/>
-                </div>
-                <div>
-                    {comments.map(c => c)}
+                    <input type={'text'} ref={(comment) => this.comment = comment} placeholder={'comment...'}/>
+                </div>}
+                <div className={'card-content'}>
+                    {comments.map(c => <p>{c}</p>)}
                 </div>
             </div>
         </div>
