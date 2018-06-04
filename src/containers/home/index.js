@@ -1,34 +1,36 @@
-import React from 'react';
-import { push } from 'react-router-redux';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {push} from 'react-router-redux';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import {fetchPosts} from "../../modules/blog";
 import Blog from '../../components/Blog'
-// import {
-//     increment,
-//     incrementAsync,
-//     decrement,
-//     decrementAsync
-// } from '../../modules/counter';
 
-const Home = props => (
-    <div>
-        <h1>Home</h1>
-        <Blog/>
-    </div>
-);
+class Home extends Component {
+    componentWillMount() {
+        this.props.fetchPosts()
+    }
+
+    render() {
+        const {posts} = this.props;
+
+        return <div>
+            <h1>Home</h1>
+            <Blog posts={posts} />
+        </div>
+    }
+}
 
 const mapStateToProps = state => ({
-    // count: state.counter.count,
-    // isIncrementing: state.counter.isIncrementing,
-    // isDecrementing: state.counter.isDecrementing
+    posts: state.blog.posts,
 });
 
 const mapDispatchToProps = dispatch =>
     bindActionCreators(
         {
-            changePage: () => push('/about-us')
+            changePage: () => push('/about-us'),
+            fetchPosts: () => fetchPosts()
         },
         dispatch
     );
 
-export default connect(mapStateToProps, null)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
