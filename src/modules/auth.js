@@ -4,6 +4,11 @@ const FETCH_MINIMUM_ETHER = 'auth/FETCH_MINIMUM_ETHER';
 const FETCH_MINIMUM_ETHER_SUCCESS = 'auth/FETCH_MINIMUM_ETHER_SUCCESS';
 const FETCH_MINIMUM_ETHER_FAILED = 'auth/FETCH_MINIMUM_ETHER_FAILED';
 
+
+const REGISTER = 'auth/REGISTER';
+const REGISTER_SUCCESS = 'auth/REGISTER_SUCCESS';
+const REGISTER_FAILED = 'auth/REGISTER_FAILED';
+
 const initialState = {};
 
 export default (state = initialState, action) => {
@@ -14,10 +19,10 @@ export default (state = initialState, action) => {
                 isLoading: true
             }
         }
-        case FETCH_MINIMUM_ETHER_SUCCESS:{
+        case FETCH_MINIMUM_ETHER_SUCCESS: {
             return {
                 ...state,
-                minEther : action.payload.minEther,
+                minEther: action.payload.minEther,
                 isLoading: false
             }
         }
@@ -25,6 +30,12 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false
+            }
+        }
+        case REGISTER_SUCCESS: {
+            return {
+                ...state,
+                isAuthenticated:true
             }
         }
         default:
@@ -46,5 +57,15 @@ export const fetchMinimumEther = () => {
     };
 };
 
-export const register = () => {
+export const register = (value) => {
+    return dispatch => {
+        dispatch({type: REGISTER});
+        contract.register({value: value, gasPrice: 10000, gas: 60000}, (e, r) => {
+            if (e)
+                dispatch({type: REGISTER_FAILED});
+            else
+                dispatch({type: REGISTER_SUCCESS, payload: r})
+
+        })
+    }
 };
