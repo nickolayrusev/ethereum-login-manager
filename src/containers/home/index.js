@@ -8,30 +8,30 @@ import Blog from '../../components/Blog'
 class Home extends Component {
     constructor(props) {
         super(props)
-        this.onCommentAdd = this.onCommentAdd.bind(this);
+        this.onAddComment = this.onAddComment.bind(this);
     }
 
     componentWillMount() {
         this.props.fetchPosts()
     }
 
-    onCommentAdd() {
-        console.log('add')
-        this.props.addComment({id:1},'hi')
+    onAddComment(p, c) {
+        this.props.addComment(p,c)
     }
 
     render() {
-        const {posts} = this.props;
+        const {posts, isAuthenticated} = this.props;
 
         return <div>
             <h1>Home</h1>
-            <Blog posts={posts} onCommentAdd={this.onCommentAdd}/>
+            <Blog posts={posts} isAuthenticated={isAuthenticated} onAddComment={this.onAddComment}/>
         </div>
     }
 }
 
 const mapStateToProps = state => ({
     posts: state.blog.posts,
+    isAuthenticated: false
 });
 
 const mapDispatchToProps = dispatch =>
