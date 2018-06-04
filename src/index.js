@@ -7,6 +7,7 @@ import store, { history } from './store';
 
 import registerServiceWorker from './registerServiceWorker';
 
+
 ReactDOM.render(<Provider store={store}>
     <ConnectedRouter history={history}>
         <div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Post.css';
 
-const Post = ({id, title, image, content, comments}) => (<div className="col-xs-12 col-sm-4">
+const Post = ({id, title, image, content, comments, onCommentAdd}) => (<div className="col-xs-12 col-sm-4">
     <div className="card">
         <a className="img-card">
             <img src={image} />
@@ -21,7 +21,7 @@ const Post = ({id, title, image, content, comments}) => (<div className="col-xs-
             </a>
         </div>
         <div className={'comment-wrapper inner-addon right-addon'}>
-            <i aria-hidden={'true'} className="glyphicon glyphicon-comment" onClick={(e)=>console.log('clicked', e)}/>
+            <i aria-hidden={'true'} className="glyphicon glyphicon-comment" onClick={(e)=>{console.log('clicked', e); onCommentAdd(1,'hi') }}/>
             <input type={'text'} placeholder={'comment...'} />
         </div>
         <div>
