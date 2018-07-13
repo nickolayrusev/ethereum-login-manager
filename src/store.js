@@ -84,7 +84,7 @@ const store = createStore(
 
 store.subscribe(throttle(() => {
     console.log('subscribe...')
-    saveState({blog: store.getState().blog} )
+    saveState({blog: store.getState().blog, auth: store.getState().auth})
 }, 1000));
 
 export default store

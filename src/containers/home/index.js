@@ -21,7 +21,6 @@ class Home extends Component {
 
     render() {
         const {posts, isAuthenticated} = this.props;
-
         return <div>
             <h1>Home</h1>
             <Blog posts={posts} isAuthenticated={isAuthenticated} onAddComment={this.onAddComment}/>
@@ -31,7 +30,7 @@ class Home extends Component {
 
 const mapStateToProps = state => ({
     posts: state.blog.posts,
-    isAuthenticated: false
+    isAuthenticated: state.auth.isAuthenticated
 });
 
 const mapDispatchToProps = dispatch =>

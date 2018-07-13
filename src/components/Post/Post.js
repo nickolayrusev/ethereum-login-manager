@@ -45,7 +45,7 @@ class Post extends Component {
                     <input type={'text'} ref={(comment) => this.comment = comment} placeholder={'comment...'}/>
                 </div>}
                 <div className={'card-content'}>
-                    {comments.map(c => <p>{c}</p>)}
+                    {comments.map((c,i) => <p key={i}>{c}</p>)}
                 </div>
             </div>
         </div>
