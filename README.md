@@ -1,17 +1,17 @@
-#ethereum login manager
+# ethereum login manager
 
-##Description
+## Description
 This project tests communication between web3 and the smart contract. The smart contract (https://github.com/varasu/logid) 
 acts like database - stores user id and received amount. The app supports functionalities like:
 - Register new users with chosen amount of ethers
 - destroy your account ( ether will be sent again to your account)
 - withdraw initial investment
 
-##Technology 
+## Technology 
 
 the app is bootstraped with create-react-app 
 
-##Running
+## Running
 
 `yarn start`
 
