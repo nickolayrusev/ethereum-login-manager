@@ -15,7 +15,7 @@ the app is bootstraped with create-react-app
 
 `yarn start`
 
-##Screens
+## Screens
   
 ![Alt text](/screens/first.png)
 ![Alt text](/screens/second.png)
